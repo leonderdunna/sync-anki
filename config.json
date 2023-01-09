@@ -1,0 +1,19 @@
+{
+  "decks": [
+    {
+      "name": "hallo",
+      "server": "localhost:3000",
+      "servername": "lokal"
+    },
+    {
+      "name": "hallo",
+      "server": "localhost:3000",
+      "servername": "lokal"
+    },
+    {
+      "name": "hallo",
+      "server": "localhost:3000",
+      "servername": "lokal"
+    }
+  ]
+}

@@ -1,16 +1,40 @@
-# This is a sample Python script.
 
-# Press Umschalt+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from aqt import mw
+
+from aqt.utils import showInfo, qconnect
+
+from aqt.qt import *
+
+import webbrowser
+from .settings import open_settings_widget
+
+addon_name = "Sync"
+bug_report_url = "https://github.com/leonderdunna/sync-anki/issues"
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Strg+8 to toggle the breakpoint.
+
+def opengithub():
+    webbrowser.open(bug_report_url)
 
 
-# Press the green button in the gutter to run the script.
+#
+#   Extras
+#       Sync
+#           Sync-All
+#           Einstellungen
+#           Fehler Melden
+#
+# Menü einträge generieren:
+menuSync = QMenu(addon_name)
+menuEntrySyncAll = QAction("Alles Synchronisieren", mw)
+menuEntrySettings = QAction("Einstellungen", mw)
+menuEntryReport = QAction("Fehler Melden", mw)
 
-print_hi('PyCharm')
+qconnect(menuEntryReport.triggered, opengithub)
+qconnect(menuEntrySettings.triggered, open_settings_widget)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+menuSync.addAction(menuEntrySyncAll)
+menuSync.addAction(menuEntrySettings)
+menuSync.addAction(menuEntryReport)
+
+mw.form.menuTools.addMenu(menuSync)
